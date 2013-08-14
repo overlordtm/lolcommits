@@ -6,6 +6,9 @@
     - README updated with details
   * adding better features for testing the `--fork` option (#110)
 
+0.4.6 (12 August 2013)
+  * Fix for incorrect permissioning in gem issue (see #112)
+
 0.4.5 (8 July 2013)
   * disable&remove statsd plugin (as per #94)
   * fix issues with animated gif generation (#107)
