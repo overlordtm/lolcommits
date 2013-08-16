@@ -72,14 +72,19 @@ def do_noargs
   puts "Or:  lolcommits --help"
 end
 
-HOOK_PATH = File.join ".git", "hooks", "post-commit"
-HOOK_DIR = File.join ".git", "hooks"
-
+if File.file?(".git")
+  GIT_BASE = File.open(".git").read.split(':')[1].strip
+  HOOK_DIR = File.join GIT_BASE, "hooks"
+  HOOK_PATH = File.join HOOK_DIR, "post-commit"
+else
+  HOOK_PATH = File.join ".git", "hooks", "post-commit"
+  HOOK_DIR = File.join ".git", "hooks"
+end
 #
 # IF --ENABLE, DO ENABLE
 #
 def do_enable
-  if not File.directory?(".git")
+  if not File.exists?(".git")
     fatal "You don't appear to be in the base directory of a git project."
     exit 1
   end
